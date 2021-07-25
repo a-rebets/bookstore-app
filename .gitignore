@@ -1,1 +1,4 @@
 /.idea
+client/.env
+client/yarn.lock
+server/yarn.lock

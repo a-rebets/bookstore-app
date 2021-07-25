@@ -27,7 +27,7 @@ export const Header = withStyles(styles)(({ classes }: HeaderProps) => {
                     color="inherit"
                     className={classes.title}
                 >
-                    GraphQL Bookstore
+                    Bookstore App
                 </Typography>
                 <SettingsButton />
             </Toolbar>

@@ -7,11 +7,11 @@ import { Overrides } from '@material-ui/core/styles/overrides';
 export function getTheme(): Theme {
     const palette: PaletteOptions = {
         primary: {
-            main: '#1277eb',
+            main: '#9c27b0',
             dark: '#0366d6'
         },
         secondary: {
-            main: '#28a745'
+            main: '#FFC107'
         },
         error: {
             main: red.A400

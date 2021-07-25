@@ -1,0 +1,121 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+""""""
+directive @cacheControl on FIELD_DEFINITION | OBJECT | INTERFACE
+""""""
+type Query {
+  """"""
+  authors: [Author!]!
+  """"""
+  author("""""" id: ID!): Author!
+  """"""
+  books: [Book!]!
+  """"""
+  book("""""" id: ID!): Book!
+  """"""
+  publishers: [Publisher!]!
+  """"""
+  publisher("""""" id: ID!): Publisher!
+}
+""""""
+type Author {
+  """"""
+  id: ID!
+  """"""
+  name: String!
+  """"""
+  books: [Book!]!
+}
+""""""
+type Book {
+  """"""
+  id: ID!
+  """"""
+  name: String!
+  """"""
+  publisher: Publisher!
+  """"""
+  authors: [Author!]!
+}
+""""""
+type Publisher {
+  """"""
+  id: ID!
+  """"""
+  name: String!
+  """"""
+  books: [Book!]!
+}
+""""""
+type Mutation {
+  """"""
+  createAuthor("""""" name: String!): Author!
+  """"""
+  updateAuthor("""""" authorId: ID!, """""" name: String!): Author!
+  """"""
+  createBook("""""" book: BookInput!): Book!
+  """"""
+  updateBook("""""" bookId: ID!, """""" book: BookInput!): Book!
+  """"""
+  setBookAuthors("""""" bookId: ID!, """""" authorIds: [ID!]): Book!
+  """"""
+  createPublisher("""""" name: String!): Publisher!
+  """"""
+  updatePublisher("""""" publisherId: ID!, """""" name: String!): Publisher!
+}
+""""""
+input BookInput {
+  """"""
+  name: String!
+  """"""
+  publisherId: ID!
+}
+""""""
+type Subscription {
+  """"""
+  authorMutated: AuthorMutationPayload!
+  """"""
+  bookMutated: BookMutationPayload!
+  """"""
+  publisherMutated: PublisherMutationPayload!
+}
+""""""
+type AuthorMutationPayload {
+  """"""
+  mutation: MutationType!
+  """"""
+  node: Author!
+}
+enum MutationType {
+  """"""
+  CREATED
+  """"""
+  UPDATED
+  """"""
+  DELETED
+}
+""""""
+type BookMutationPayload {
+  """"""
+  mutation: MutationType!
+  """"""
+  node: Book!
+}
+""""""
+type PublisherMutationPayload {
+  """"""
+  mutation: MutationType!
+  """"""
+  node: Publisher!
+}
+enum CacheControlScope {
+  """"""
+  PUBLIC
+  """"""
+  PRIVATE
+}
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
